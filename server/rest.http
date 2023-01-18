@@ -2,11 +2,7 @@
 POST http://localhost:5000/v1/api/decks
 Content-Type: application/json
 
-{"title": "TS", 
-"cards": [
-    "Typescscipt is nothing but JS with data types"
-]
-}
+{"title": "JS & TS"}
 
 
 
@@ -22,14 +18,9 @@ Content-Type: application/json
 
 
 ### get a  Deck
-GET http://localhost:5000/v1/api/decks/63c798c088759f5431951405
+GET http://localhost:5000/v1/api/decks/63c7a108d9088aa565038337
 Content-Type: application/json
 
-{"title": "TS", 
-"cards": [
-    "Typescscipt is nothing but JS with data types"
-]
-}
 
 
 

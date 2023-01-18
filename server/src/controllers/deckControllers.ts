@@ -4,7 +4,8 @@ import DeckSchema from "../models/deck";
 
 
 export const createDeck = async (req:Request, res:Response) =>{
-    const deck = new DeckSchema ({...req.body})
+    const title = req.body.title;
+    const deck = new DeckSchema ({title})
     try{
         const createdDeck = await deck.save();
         res.status(200).json(createdDeck);
