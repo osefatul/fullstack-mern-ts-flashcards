@@ -6,10 +6,15 @@ const app = express();
 import cors from "cors";
 import mongoose from "mongoose";
 
+const deckRoute = require("./route/deckRoute")
+
+
+
 app.use(cors({origin: "*",}));
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
 
+app.use("/v1/api", deckRoute);
 
 
 

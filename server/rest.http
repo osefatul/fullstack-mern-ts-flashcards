@@ -1,0 +1,44 @@
+### Create a new Deck
+POST http://localhost:5000/v1/api/decks
+Content-Type: application/json
+
+{"title": "TS", 
+"cards": [
+    "Typescscipt is nothing but JS with data types"
+]
+}
+
+
+
+### Get Decks
+GET http://localhost:5000/v1/api/decks
+Content-Type: application/json
+
+{"title": "TS", 
+"cards": [
+    "Typescscipt is nothing but JS with data types"
+]
+}
+
+
+### get a  Deck
+GET http://localhost:5000/v1/api/decks/63c798c088759f5431951405
+Content-Type: application/json
+
+{"title": "TS", 
+"cards": [
+    "Typescscipt is nothing but JS with data types"
+]
+}
+
+
+
+### Delete a  Deck
+DELETE http://localhost:5000/v1/api/decks/63c798c088759f5431951405
+Content-Type: application/json
+
+{"title": "TS", 
+"cards": [
+    "Typescscipt is nothing but JS with data types"
+]
+}
