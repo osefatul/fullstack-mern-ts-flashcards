@@ -41,7 +41,7 @@ export const deleteADeck = async (req:Request, res:Response) => {
     const deckId = req.params.deckId;
     try{
         await DeckSchema.findByIdAndDelete(deckId);
-        res.status(200).send("Deck is deleted");
+        res.status(200).json("Deck is deleted");
     }catch(err){
         console.log(err)
         res.status(400).json("Something went wrong");
