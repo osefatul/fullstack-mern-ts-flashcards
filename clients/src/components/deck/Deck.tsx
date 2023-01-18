@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 function Deck() {
     const [deck, setDeck] = useState<TDeck | undefined>();
-    const [cards, setCards] = useState<string []>([]);
+    const [cards, setCards] = useState<string[]>([]);
     const [text, setText] = useState("");
     const {deckId} = useParams()
 
@@ -15,7 +15,7 @@ function Deck() {
     const handleDeleteCard = async (index: number) => {
         if(!deckId) return;
         const newDeck = await deleteACard(deckId, index);
-        setCards(newDeck)
+        setCards(newDeck.cards)
     }
 
 
@@ -27,39 +27,42 @@ function Deck() {
     }
 
 
-    useEffect(() =>{
-        async function fetchDeck(){
-            if(!deckId) return;
+    useEffect(() => {
+        async function fetchDeck() {
+            if (!deckId) return;
             const newDeck = await getADeck(deckId);
             setDeck(newDeck);
             setCards(newDeck.cards);
         }
-    },[])
+        fetchDeck();
+    }, [deckId]);
 
     return (
-        <div className="Deck">
+    <div className="Deck">
         <h1>{deck?.title}</h1>
         <ul className="cards">
             {cards.map((card, index) => (
-            <li key={index}>
-                <button onClick={() => handleDeleteCard(index)}>X</button>
-                {card}
-            </li>
+                <li key={index} className="card">
+                    <button onClick={() => handleDeleteCard(index)}>X</button>
+                    <div className='cardText'>
+                        {card}
+                    </div>
+                </li>
             ))}
         </ul>
         <form onSubmit={handleCreateDeck}>
-            <label htmlFor="card-text">Card Text</label>
-            <input
+        <label htmlFor="card-text">Card Text</label>
+        <input
             id="card-text"
             value={text}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setText(e.target.value);
+            setText(e.target.value);
             }}
-            />
-            <button>Create Card</button>
+        />
+        <button>Create Card</button>
         </form>
-        </div>
-    )
+    </div>
+    );
 }
 
 export default Deck

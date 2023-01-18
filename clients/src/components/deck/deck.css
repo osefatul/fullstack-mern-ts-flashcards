@@ -17,11 +17,11 @@ text-align: center;
 }
 
 .cards {
-display: grid;
-width: 600px;
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+width: 1000px;
 margin: 0 auto;
-grid-gap: 10px;
-grid-template-columns: repeat(3, 1fr);
 color: black;
 }
 
@@ -30,17 +30,26 @@ position: relative;
 display: flex;
 justify-content: center;
 align-items: center;
-height: 120px;
+
+height: 150px;
+width: 260px;
+
 background: white;
 border: 1px solid white;
 border-radius: 10px;
-padding: 12px;
-padding-top: 30px;
+padding: 20px;
+
+/* padding-top: 40px; */
+overflow:auto;
 }
 
+.cardText{
+    height: 100%;
+}
 .cards li button {
 position: absolute;
 font-size: 10px;
+font-weight: bold;
 top: 5px;
 right: 5px;
 }

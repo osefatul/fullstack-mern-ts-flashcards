@@ -17,7 +17,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: rgb(122, 40, 11);
   text-decoration: inherit;
 }
 a:hover {
@@ -76,6 +76,6 @@ button:focus-visible {
 }
 
 .container {
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;
 }
