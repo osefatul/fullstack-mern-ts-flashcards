@@ -13,26 +13,30 @@ function App() {
 
   const handleCreateDecks = async (e:React.FormEvent) => {
     e.preventDefault()
-    const formDeck = await createDeck(title);
-    setDecks([...decks, formDeck]);
-    setTitle("")
+    try{
+      if (!title) return;
+      const formDeck = await createDeck(title);
+      setDecks([...decks, formDeck]);
+      setTitle("")
+    }catch(err){
+      alert("No title")
+    }
   }
 
   async function handleDeleteDeck(deckId: string) {
     console.log(decks)
     console.log(deckId)
     await deleteADeck(deckId);
-    await setDecks(decks.filter((deck) => deck._id !== deckId));
+    setDecks(decks.filter((deck) => deck._id !== deckId));
   }
 
 
   useEffect(() => {
     async function fetchDecks() {
       const decksData= await getDecks()
-      console.log(decksData)
+      // console.log(decksData)
       setDecks(decksData)
     }
-
     fetchDecks()
   },[])
 
@@ -54,7 +58,8 @@ function App() {
 
         <form onSubmit={handleCreateDecks} >
           <label htmlFor="deck-title">Deck Title</label>
-          <input 
+          <input
+          required 
           type="text" 
           id='deck-title' 
           value={title}

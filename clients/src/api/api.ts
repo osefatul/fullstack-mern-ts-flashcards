@@ -8,7 +8,7 @@ export interface TDeck {
 }
 
 
-export const createDeck = async (title:string) =>{
+export const createDeck = async (title:string): Promise<TDeck> => {
     const response = await fetch(API_URL, {
         method: "POST",
         body: JSON.stringify({title}),
