@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import { createDeck, deleteADeck, getDecks, TDeck } from './api/api'
 import { Link } from "react-router-dom";
+import Loader from './components/loader/Loader';
 
 
 
 function App() {
   const [decks, setDecks] = useState<TDeck []>([])
   const [title, setTitle] = useState("")
-
+  const [loading, setLoading] = useState<boolean>(true);
 
   const handleCreateDecks = async (e:React.FormEvent) => {
     e.preventDefault()
@@ -33,45 +33,58 @@ function App() {
 
   useEffect(() => {
     async function fetchDecks() {
+      setLoading(true);
       const decksData= await getDecks()
-      // console.log(decksData)
+      console.log(decksData)
       setDecks(decksData)
+      setLoading(false);
     }
     fetchDecks()
   },[])
 
+
   return (
+
     <div className="container">
-      <div className="App">
-        <h1>Your Decks</h1>
 
-        <ul className='decks'>
-          {
-            decks.map(deck =>(
-              <li key={deck._id}>
-                <button onClick={() => handleDeleteDeck(deck._id)}>X</button>
-                <Link className="title" to={`decks/${deck._id}`}>{deck.title}</Link>
-              </li>
-            ))
-          }
-        </ul>
+      {
+        loading? 
+        <div className='loading'>
+          <Loader message = "Loading, Please wait" />
+        </div>:
+          <div className="App">
+            <h1>Your Decks</h1>
 
-        <form onSubmit={handleCreateDecks} >
-          <label htmlFor="deck-title">Deck Title</label>
-          <input
-          required 
-          type="text" 
-          id='deck-title' 
-          value={title}
-          onChange= {
-            (e: React.ChangeEvent<HTMLInputElement>) => {
-            setTitle(e.target.value)
-          }}
-          />
+            <form onSubmit={handleCreateDecks} >
+              <div className='formData'>
+                <label htmlFor="deck-title">Deck Title</label>
+                <input
+                required 
+                type="text" 
+                id='deck-title' 
+                value={title}
+                onChange= {
+                  (e: React.ChangeEvent<HTMLInputElement>) => {
+                    setTitle(e.target.value)
+                  }}
+                  />
+              </div>
+              <button>Create Deck</button>
+            </form>
 
-          <button>Create Deck</button>
-        </form>
-      </div>
+            <ul className='decks'>
+              {
+                decks.map(deck =>(
+                  <li key={deck._id}>
+                    <button onClick={() => handleDeleteDeck(deck._id)}>X</button>
+                    <Link className="title" to={`decks/${deck._id}`}>{deck.title}</Link>
+                  </li>
+                ))
+              }
+            </ul>
+        </div>
+      }
+
     </div>
   )
 }

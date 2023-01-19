@@ -1,4 +1,6 @@
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:5000/v1/api/decks";
+// const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:5000/v1/api/decks";
+const API_URL = import.meta.env.VITE_API_URL ?? "https://flash-card-mern.herokuapp.com/v1/api/decks";
+
 
 
 export interface TDeck {

@@ -40,16 +40,6 @@ function Deck() {
     return (
     <div className="Deck">
         <h1>{deck?.title}</h1>
-        <ul className="cards">
-            {cards.map((card, index) => (
-                <li key={index} className="card">
-                    <button onClick={() => handleDeleteCard(index)}>X</button>
-                    <div className='cardText'>
-                        {card}
-                    </div>
-                </li>
-            ))}
-        </ul>
         <form onSubmit={handleCreateDeck}>
         <label htmlFor="card-text">Card Text</label>
         <input
@@ -61,6 +51,17 @@ function Deck() {
         />
         <button>Create Card</button>
         </form>
+        
+        <ul className="cards">
+            {cards.map((card, index) => (
+                <li key={index} className="card">
+                    <button onClick={() => handleDeleteCard(index)}>X</button>
+                    <div className='cardText'>
+                        {card}
+                    </div>
+                </li>
+            ))}
+        </ul>
     </div>
     );
 }

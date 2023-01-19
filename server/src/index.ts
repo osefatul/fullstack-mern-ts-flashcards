@@ -14,6 +14,11 @@ app.use(cors({origin: "*",}));
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
 
+
+//test
+app.get("/", (req, res) => {
+    res.send("Testing working !")
+})
 app.use("/v1/api", deckRoute);
 
 

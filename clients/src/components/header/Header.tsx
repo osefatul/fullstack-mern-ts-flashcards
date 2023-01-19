@@ -5,10 +5,10 @@ export function Header() {
 
 
 return (
-<div className="Header">
+<div className="Header" style={{"background":"black"}}>
     <div className="container">
         <div>
-            <a href="/">FlashCardSage</a>
+            <a style={{"color":"white",}} href="/">FlashCardSage</a>
         </div>
     </div>
 </div>
