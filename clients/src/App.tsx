@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import './App.css'
 import { createDeck, deleteADeck, getDecks, TDeck } from './api/api'
 import { Link } from "react-router-dom";
 import Loader from './components/loader/Loader';
+import './App.css'
 
 
 
@@ -24,24 +24,19 @@ function App() {
   }
 
   async function handleDeleteDeck(deckId: string) {
-    // console.log(decks)
-    // console.log(deckId)
     await deleteADeck(deckId);
     setDecks(decks.filter((deck) => deck._id !== deckId));
   }
-
 
   useEffect(() => {
     async function fetchDecks() {
       setLoading(true);
       const decksData= await getDecks()
-      // console.log(decksData)
       setDecks(decksData)
       setLoading(false);
     }
     fetchDecks()
   },[])
-
 
   return (
     <div className="container">
@@ -52,7 +47,6 @@ function App() {
         </div>:
           <div className="App">
             <h1>Your Decks</h1>
-
             <form onSubmit={handleCreateDecks} >
               <div className='formData'>
                 <label htmlFor="deck-title">Deck Title</label>
@@ -69,7 +63,6 @@ function App() {
               </div>
               <button>Create Deck</button>
             </form>
-
             <ul className='decks'>
               {
                 decks.map(deck =>(
@@ -82,7 +75,6 @@ function App() {
             </ul>
         </div>
       }
-
     </div>
   )
 }
