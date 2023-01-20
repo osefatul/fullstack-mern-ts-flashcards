@@ -25,7 +25,7 @@ function App() {
 
   async function handleDeleteDeck(deckId: string) {
     // console.log(decks)
-    console.log(deckId)
+    // console.log(deckId)
     await deleteADeck(deckId);
     setDecks(decks.filter((deck) => deck._id !== deckId));
   }
@@ -35,7 +35,7 @@ function App() {
     async function fetchDecks() {
       setLoading(true);
       const decksData= await getDecks()
-      console.log(decksData)
+      // console.log(decksData)
       setDecks(decksData)
       setLoading(false);
     }
